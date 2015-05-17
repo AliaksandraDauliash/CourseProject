@@ -3,6 +3,8 @@ package dovlyash.bsuir.data.dao;
 
 import dovlyash.bsuir.data.entity.Mark;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -29,16 +31,10 @@ public class MarkDAO {
 
     public List read() throws SQLException {
         Session session = HelperDAO.getFactory().openSession();
-        Transaction tx = null;
         List recalls=null;
         try {
-            tx = session.beginTransaction();
             recalls = session.createCriteria(Mark.class).list();
-            tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
             e.printStackTrace();
         } finally {
             session.close();
@@ -46,14 +42,33 @@ public class MarkDAO {
         return recalls;
     }
 
-   public void update(int idMark, Double value ) throws SQLException{
+     public List readByLogoperatorId(int logoperatorId) throws SQLException {
+        Session session = HelperDAO.getFactory().openSession();
+        List<Mark> marks = new ArrayList();
+        try {
+            List cr = session.createCriteria(Mark.class).list();
+            for (Iterator iterator
+                  = cr.iterator(); iterator.hasNext();) {
+                Mark m = (Mark) iterator.next();
+                if(m.getLogoperator().getId() == logoperatorId)
+                   marks.add(m);
+            }
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return marks;
+    }
+     
+   public void update(int idMark, int value ) throws SQLException{
       Session session = HelperDAO.getFactory().openSession();
       Transaction tx = null;
       try{
          tx = session.beginTransaction();
          Mark mark = 
                     (Mark)session.get(Mark.class, idMark); 
-         mark.setText(value );
+         mark.setValue(value );
 		 session.update(mark); 
          tx.commit();
       }catch (HibernateException e) {

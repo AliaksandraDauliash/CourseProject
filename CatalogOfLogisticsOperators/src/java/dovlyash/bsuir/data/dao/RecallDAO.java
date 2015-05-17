@@ -1,9 +1,13 @@
 
 package dovlyash.bsuir.data.dao;
 
+import dovlyash.bsuir.data.entity.Logoperator;
 import dovlyash.bsuir.data.entity.Recall;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -29,16 +33,29 @@ public class RecallDAO {
 
     public List read() throws SQLException {
         Session session = HelperDAO.getFactory().openSession();
-        Transaction tx = null;
         List recalls=null;
         try {
-            tx = session.beginTransaction();
             recalls = session.createCriteria(Recall.class).list();
-            tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return recalls;
+    }
+    
+    public List readByLogoperatorId(int logoperatorId) throws SQLException {
+        Session session = HelperDAO.getFactory().openSession();
+        List<Recall> recalls = new ArrayList();
+        try {
+            List cr = session.createCriteria(Recall.class).list();
+            for (Iterator iterator
+                  = cr.iterator(); iterator.hasNext();) {
+                Recall rc = (Recall) iterator.next();
+                if(rc.getLogoperator().getId() == logoperatorId)
+                   recalls.add(rc);
             }
+        } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
             session.close();

@@ -1,0 +1,95 @@
+body,html{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+header{
+    height: 15%;
+    width: 100%;
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+.navigation{
+    padding-left: 30%;
+    vertical-align: middle;
+    margin: 0;
+    box-sizing: border-box;
+    display: inline-block;
+}
+.navigation li{
+    display: inline-block;
+    text-align: center;
+}
+.navigation a{
+    color: #00688B; 
+    display: block;
+    margin-left: 50px;
+    margin-top: 10px;
+    padding: 5px;
+    text-decoration: none;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.navigation a:hover{
+    background-color: #00688B;
+    color: #FFF;
+}
+nav{
+    margin: 0;
+    color: #00688B;
+    height: 70%;
+    padding: 50px 50px;
+    width: 25%;
+    box-sizing: border-box;
+    float:left;
+}
+.menu_nav input{
+    margin:5px;
+    color: #00688B;
+    font-size:12px;
+    padding:4px 10px 4px 10px;
+    box-sizing: border-box;
+}
+.menu_nav button{
+    background-color: #00688B;
+    border-radius: 5px;
+    width: 100px;
+    height: 30px;
+    margin: 10px;
+    color: #FFF;
+    border: 0;
+}
+.menu_nav button:hover{
+    background-color: #009ACD;
+}
+section{
+    margin: 0;
+    padding: 0;
+    height: 70%;
+    width: 50%;
+    float:left;
+}
+.section_image{
+    height: 448px;
+    width: 672px;
+    border: 1px solid #00688B;
+}
+aside{
+    margin: 0;
+    padding: 0;
+    height: 70%;
+    width: 25%;
+    float:left;
+}
+footer{
+    height: 15%;
+    background-color:#00688B;
+    clear: both;
+}
+.footer_text{
+    color: #FFF;
+    padding: 20px 5px;
+    text-align: center;
+    box-sizing: border-box;
+}

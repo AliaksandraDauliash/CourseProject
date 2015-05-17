@@ -13,7 +13,7 @@ public class Mark implements Serializable{
     private int id;
     
     @Column(name = "markValue")
-    private double value;
+    private int value;
     
     @ManyToOne
     @JoinColumn (name = "clientId")
@@ -27,7 +27,7 @@ public class Mark implements Serializable{
         
     }
     
-    public Mark(int id, double value, Client client, Logoperator logoperator){
+    public Mark(int id, int value, Client client, Logoperator logoperator){
         this.id = id;
         this.value = value;
         this.client = client;
@@ -42,11 +42,11 @@ public class Mark implements Serializable{
         this.id = id;
     }
 
-    public Double getText() {
+    public int getValue() {
         return value;
     }
 
-    public void setText(Double value) {
+    public void setValue(int value) {
         this.value = value;
     }
 

@@ -7,7 +7,7 @@ import dovlyash.bsuir.command.RequestHelper;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,12 +58,10 @@ private static final long serialVersionUID = 1L;
             throws UnsupportedEncodingException, ServletException, IOException, SQLException {;
         response.setContentType("text/html; charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        //открытие нового сеанса(сессии)
         HttpSession session = request.getSession(true);
-        HashMap<String, Object> hashData = new HashMap<String, Object>();
-        HashMap<String, Object> hash = new HashMap<String, Object>();
-        ArrayList<String> list = new ArrayList<String>();
-        
+        HashMap<String, Object> hashData;
+        HashMap<String, Object> hash ;
+        List<String> list;
         RequestHandler parsingRequest = new RequestHandler();
         RequestHelper requestHelper = RequestHelper.getInstance();
         Command command = requestHelper.getCommand(request);

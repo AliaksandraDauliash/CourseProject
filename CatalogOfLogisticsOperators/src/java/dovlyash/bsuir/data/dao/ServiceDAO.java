@@ -31,16 +31,10 @@ public class ServiceDAO {
 
     public List read() throws SQLException {
         Session session = HelperDAO.getFactory().openSession();
-        Transaction tx = null;
         List services=null;
         try {
-            tx = session.beginTransaction();
             services = session.createCriteria(Service.class).list();
-            tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
             e.printStackTrace();
         } finally {
             session.close();
@@ -51,20 +45,14 @@ public class ServiceDAO {
     public Service readByName(String serviceName) throws SQLException {
         Session session = HelperDAO.getFactory().openSession();
         Service service = null;
-        Transaction tx = null;
         try {
             List serv;
-            tx = session.beginTransaction();
             SQLQuery query = session.createSQLQuery(selectByName);
             query.addEntity(Service.class);
             query.setParameter("serviceName", serviceName);
             serv = query.list();
             service = (Service) serv.get(0);
-            tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
             e.printStackTrace();
         } finally {
             session.close();

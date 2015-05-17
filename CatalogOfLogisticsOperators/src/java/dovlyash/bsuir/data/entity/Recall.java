@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Recall implements Serializable{
     
     @Id @GeneratedValue
-    @Column(name = "clientId")
+    @Column(name = "recallId")
     private int id;
     
     @Column(name = "recallText")

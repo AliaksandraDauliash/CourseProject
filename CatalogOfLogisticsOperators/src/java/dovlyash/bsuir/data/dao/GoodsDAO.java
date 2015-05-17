@@ -28,35 +28,17 @@ public class GoodsDAO {
     }
     /* Method to  READ all the employees */
 
-    public void read() throws SQLException {
+    public List read() throws SQLException {
         Session session = HelperDAO.getFactory().openSession();
-        Transaction tx = null;
+        List goods = null;
         try {
-            tx = session.beginTransaction();
-            List goodss = session.createCriteria(Goods.class).list();
-            for (Iterator iterator
-                    = goodss.iterator(); iterator.hasNext();) {
-                Goods goods = (Goods) iterator.next();
-                System.out.print("ID: " + goods.getId());
-                System.out.print("  Name: " + goods.getName());
-                System.out.print("  Weight: " + goods.getWeight());
-                System.out.println("  Volume: " + goods.getVolume());
-                Client cl = goods.getClient();
-                System.out.println("Client ");
-                System.out.println("\tID: " + cl.getId());
-                System.out.println("\tName: " +  cl.getName());
-                System.out.println("\tPhone: " + cl.getPhone());
-                System.out.println("\tEmail: " + cl.getEmail());
-            }
-            tx.commit();
+            goods = session.createCriteria(Goods.class).list();
         } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
             e.printStackTrace();
         } finally {
             session.close();
         }
+        return goods;
     }
 
    public void update(int idGoods, String name ) throws SQLException{

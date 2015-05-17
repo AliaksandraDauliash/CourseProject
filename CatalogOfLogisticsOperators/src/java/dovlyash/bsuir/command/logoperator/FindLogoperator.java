@@ -16,27 +16,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class FindLogoperator implements Command {
-	private LogoperatorDAO lgdao;
-        private LogoperatorServiceDAO lgsdao;
-        private ServiceDAO sdao;
-        private List<Service> serviceList;
-	private List<Logoperator> logoperatorList;
-        private List<LogoperatorService> logoperatorServiceList;
 	private String page;
 		
 	public FindLogoperator() {
 		super();
-		lgdao = new LogoperatorDAO();
-                lgsdao = new LogoperatorServiceDAO();
-                sdao = new ServiceDAO();
-                serviceList = new ArrayList<Service>();
-                logoperatorList = new ArrayList<Logoperator>();
-                logoperatorServiceList = new ArrayList<LogoperatorService>();
 		page = null;
 	}
 	
 	@Override
 	public HashMap<String, Object> execute(HashMap<String, Object> requestMap) {
+                LogoperatorDAO lgdao = new LogoperatorDAO();
+                LogoperatorServiceDAO lgsdao = new LogoperatorServiceDAO();
+                List<Logoperator> logoperatorList = new ArrayList();
+                List<LogoperatorService> logoperatorServiceList = new ArrayList();
 		HashMap<String, Object> hash = new HashMap<String, Object>();
             try {
                 String name = (String)requestMap.get("logName");
@@ -67,6 +59,7 @@ public class FindLogoperator implements Command {
                 logoperatorList = lgList;
                 logoperatorServiceList = lgsdao.read();
                 }  
+                else logoperatorServiceList = lgsdao.read();
             } catch (SQLException ex) {
                 Logger.getLogger(ViewLogoperator.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -88,8 +81,8 @@ public class FindLogoperator implements Command {
 	}
 
 	@Override
-	public ArrayList<String> atributeName() {
-		ArrayList<String> list = new ArrayList<String>();
+	public List<String> atributeName() {
+		List<String> list = new ArrayList();
 		list.add("logoperatorList");
                 list.add("logoperatorServiceList");
 		return list;

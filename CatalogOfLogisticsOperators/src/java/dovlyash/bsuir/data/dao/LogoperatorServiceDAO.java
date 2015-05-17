@@ -31,16 +31,10 @@ public class LogoperatorServiceDAO {
 
     public List read() throws SQLException {
         Session session = HelperDAO.getFactory().openSession();
-        Transaction tx = null;
         List logserv=null;
         try {
-            tx = session.beginTransaction();
             logserv = session.createCriteria(LogoperatorService.class).list();
-            tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
             e.printStackTrace();
         } finally {
             session.close();
@@ -51,10 +45,8 @@ public class LogoperatorServiceDAO {
     public List readByServiceName(String serviceName) throws SQLException {
         Session session = HelperDAO.getFactory().openSession();
         List services = new ArrayList<LogoperatorService>();
-        Transaction tx = null;
         try {
             List serv;
-            tx = session.beginTransaction();
             serv = session.createCriteria(LogoperatorService.class).list();
             for (Iterator iterator
                   = serv.iterator(); iterator.hasNext();) {
@@ -62,11 +54,26 @@ public class LogoperatorServiceDAO {
                 if(ls.getService().getName().equals(serviceName))
                    services.add(ls);
             }
-            tx.commit();
         } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return services;
+    }
+    public List readByLogoperatorId(int logoperatorId) throws SQLException {
+        Session session = HelperDAO.getFactory().openSession();
+        List services = new ArrayList<LogoperatorService>();
+        try {
+            List serv;
+            serv = session.createCriteria(LogoperatorService.class).list();
+            for (Iterator iterator
+                  = serv.iterator(); iterator.hasNext();) {
+                LogoperatorService ls = (LogoperatorService) iterator.next();
+                if(ls.getLogoperator().getId()==logoperatorId)
+                   services.add(ls);
             }
+        } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
             session.close();
@@ -102,6 +109,30 @@ public class LogoperatorServiceDAO {
             session.delete(logserv);
             tx.commit();
         } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+    
+    public void deleteByLogoperatorId(int logoperatorId) throws SQLException {
+        Session session = HelperDAO.getFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            List serv;
+            serv = session.createCriteria(LogoperatorService.class).list();
+            for (Iterator iterator
+                  = serv.iterator(); iterator.hasNext();) {
+                LogoperatorService ls = (LogoperatorService) iterator.next();
+                if(ls.getLogoperator().getId()==logoperatorId)
+                   session.delete(ls);
+            }
+            tx.commit();
+       } catch (HibernateException e) {
             if (tx != null) {
                 tx.rollback();
             }

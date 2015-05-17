@@ -3,13 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/КП.%203%20курс%202%20семестр/CatalogOfLogisticsOperators/src/java/dovlyash/bsuir/data/dao/MarkDAO.java</file>
-            <file>file:/D:/КП.%203%20курс%202%20семестр/CatalogOfLogisticsOperators/src/java/dovlyash/bsuir/data/entity/Recall.java</file>
-            <file>file:/D:/КП.%203%20курс%202%20семестр/CatalogOfLogisticsOperators/src/java/dovlyash/bsuir/data/entity/Request.java</file>
-            <file>file:/D:/КП.%203%20курс%202%20семестр/CatalogOfLogisticsOperators/src/java/dovlyash/bsuir/data/entity/Client.java</file>
-            <file>file:/D:/КП.%203%20курс%202%20семестр/CatalogOfLogisticsOperators/src/java/dovlyash/bsuir/data/entity/Mark.java</file>
-            <file>file:/D:/КП.%203%20курс%202%20семестр/CatalogOfLogisticsOperators/src/java/dovlyash/bsuir/data/dao/RecallDAO.java</file>
-            <file>file:/D:/КП.%203%20курс%202%20семестр/CatalogOfLogisticsOperators/src/java/dovlyash/bsuir/data/dao/RequestDAO.java</file>
+            <file>file:/D:/CourseProject/CatalogOfLogisticsOperators/src/java/dovlyash/bsuir/command/client/AddClient.java</file>
+            <file>file:/D:/CourseProject/CatalogOfLogisticsOperators/web/viewRequest.jsp</file>
+            <file>file:/D:/CourseProject/CatalogOfLogisticsOperators/web/addLogoperator.jsp</file>
+            <file>file:/D:/CourseProject/CatalogOfLogisticsOperators/web/viewLogoperatorProfile.jsp</file>
+            <file>file:/D:/CourseProject/CatalogOfLogisticsOperators/web/viewClientProfile.jsp</file>
+            <file>file:/D:/CourseProject/CatalogOfLogisticsOperators/web/css/index.css</file>
+            <file>file:/D:/CourseProject/CatalogOfLogisticsOperators/web/registration.jsp</file>
+            <file>file:/D:/CourseProject/CatalogOfLogisticsOperators/web/css/form.css</file>
+            <file>file:/D:/CourseProject/CatalogOfLogisticsOperators/web/makeRequest.jsp</file>
+            <file>file:/D:/CourseProject/CatalogOfLogisticsOperators/web/index.jsp</file>
+            <file>file:/D:/CourseProject/CatalogOfLogisticsOperators/web/css/addLogoperator.css</file>
+            <file>file:/D:/CourseProject/CatalogOfLogisticsOperators/web/viewRecall.jsp</file>
+            <file>file:/D:/CourseProject/CatalogOfLogisticsOperators/src/java/dovlyash/bsuir/command/recall/ViewRecall.java</file>
         </group>
     </open-files>
 </project-private>
